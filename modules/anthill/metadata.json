@@ -1,0 +1,23 @@
+{
+  "name": "anthillplatform-anthill",
+  "version": "0.2.0",
+  "author": "desertkun",
+  "summary": "A distributive back-end services platform for games",
+  "license": "MIT",
+  "source": "https://github.com/anthill-platform/puppet-anthill",
+  "project_page": "https://anthillplatform.org",
+  "issues_url": "https://github.com/anthill-platform/puppet-anthill/issues",
+  "dependencies": [
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    }
+  ],
+  "data_provider": null
+}
+

@@ -1,0 +1,15 @@
+{
+  "name": "anthillplatform-anthill_game",
+  "version": "0.2.0",
+  "author": "desertkun",
+  "summary": "Game servers hosting & matchmaking service for Anthill platform",
+  "license": "MIT",
+  "source": "https://github.com/anthill-platform/anthill-game",
+  "project_page": "https://anthillplatform.org",
+  "issues_url": "https://github.com/anthill-platform/anthill-game/issues",
+  "dependencies": [
+    {"name":"anthillplatform-anthill","version_requirement":">= 0.2.0"}
+  ],
+  "data_provider": null
+}
+

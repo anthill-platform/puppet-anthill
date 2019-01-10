@@ -1,0 +1,15 @@
+{
+  "name": "anthillplatform-anthill_report",
+  "version": "0.2.0",
+  "author": "desertkun",
+  "summary": "User submitted reports collecting service",
+  "license": "MIT",
+  "source": "https://github.com/anthill-platform/anthill-report",
+  "project_page": "https://anthillplatform.org",
+  "issues_url": "https://github.com/anthill-platform/anthill-report/issues",
+  "dependencies": [
+    {"name":"anthillplatform-anthill","version_requirement":">= 0.2.0"}
+  ],
+  "data_provider": null
+}
+
