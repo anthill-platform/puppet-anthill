@@ -30,6 +30,7 @@ class anthill::python inherits anthill {
     creates     => "${pyenv_location}/versions/${python_version}",
     path        => $pyenv_path,
     cwd         => '/tmp',
+    timeout     =>  0,
     environment => [
       "PYENV_ROOT=${pyenv_location}"
     ]
@@ -40,7 +41,8 @@ class anthill::python inherits anthill {
     group       => $applications_group,
     creates     => "${pyenv_location}/versions/${python_version}/bin/virtualenv",
     path        => $virtualenv_path,
-    cwd         => '/tmp'
+    cwd         => '/tmp',
+    timeout     =>  0,
   }
 
   if ($::operatingsystem == 'Debian' and $::operatingsystemmajrelease == '9') {
