@@ -29,6 +29,6 @@ define anthill::python::package (
     extra_index => $anthill::index::url,
     ensure => $pip_package_version,
     greater_or_eq => $greate_or_eq,
-    install_args => "--process-dependency-links --no-cache-dir"
+    install_args => "--no-cache-dir"
   }
 }

@@ -23,7 +23,7 @@ define anthill::api::version (
     ensure => $pip_package_version,
     greater_or_eq => $greate_or_eq,
     extra_index => $anthill::index::url,
-    install_args => "--process-dependency-links --no-cache-dir",
+    install_args => "--no-cache-dir",
     require => Class['anthill::index']
   }
 }
