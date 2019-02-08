@@ -21,4 +21,14 @@ define anthill::python::virtualenv {
     path => [ '/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ]
   }
 
+  $python_index_location = anthill::ensure_location("python simple index location", $anthill::python_index_location, true)
+  $simple_index_host = $python_index_location["host"]
+  $simple_index_port = $python_index_location["port"]
+
+  file { "${path}/pip.conf":
+    ensure => present,
+    mode => '0770',
+    content => template("anthill/pipconf.erb")
+  }
+
 }

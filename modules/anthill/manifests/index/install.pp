@@ -7,16 +7,16 @@ class anthill::index::install inherits anthill::index {
     fail("class { anthill::supervisor: } is required to setup index ")
   }
 
-  $pypi_args = "--port=${listen_port} --cache-directory=${cache_directory} --public-url=http://localhost:${listen_port} --repos=${repos_location}"
-  $venv = "${anthill::virtualenv_location}/default"
+  $pypi_args = "--port=${listen_port} --cache-directory=${cache_directory} --public-url=http://${anthill::internal_fqdn}:${listen_port} --repos=${repos_location}"
+  $venv = "${anthill::virtualenv_location}/pypigit"
 
-  $application_user = $anthill::applications_user
-  $application_group = $anthill::application_group
+  $applications_user = $anthill::applications_user
+  $applications_group = $anthill::applications_group
 
-  python::pip { "pypigit":
+  anthill::python::virtualenv { "pypigit":
+  } -> python::pip { "pypigit":
     virtualenv => $venv,
-    ensure => $ensure,
-    require => Anthill::Python::Virtualenv["default"]
+    ensure => $ensure
   } -> file { $cache_directory:
     ensure => 'directory',
     owner  => $application_user,

@@ -31,7 +31,6 @@ class anthill (
   String $keys_location                                               = "${applications_location}/${environment}/${anthill::params::keys_location_dir}",
   String $virtualenv_location                                         = "${applications_location}/${environment}/${anthill::params::virtualenv_location_dir}",
   String $pyenv_location                                              = "${applications_location}/${environment}/${anthill::params::pyenv_location_dir}",
-  String $index_location                                              = "${applications_location}/${environment}/${anthill::params::index_location_dir}",
   # Python version for all services
   String $python_version                                              = $anthill::params::python_version,
   # A username/group in behalf whom the Services will run
@@ -47,6 +46,8 @@ class anthill (
   Boolean $services_enable_monitoring                                 = $anthill::params::services_enable_monitoring,
   # Default location of the InfluxDB to push the stats into
   String $services_monitoring_location                                = $anthill::params::services_monitoring_location,
+  # Python Simple Repository (PEP 503) location
+  String $python_index_location                                       = $anthill::params::python_index_location,
 
 ) inherits anthill::params {
 
@@ -63,7 +64,6 @@ class anthill (
   class { '::anthill::node': } ->
   class { '::anthill::git': } ->
   class { '::anthill::python': } ->
-  class { '::anthill::def': } ->
   anchor { 'anthill::end': }
 
 }

@@ -17,13 +17,16 @@ define anthill::api::version (
     default  => $ensure,
   }
 
+  $python_index_location = anthill::ensure_location("python simple index location", $anthill::python_index_location, true)
+  $simple_index_host = $python_index_location["host"]
+  $simple_index_port = $python_index_location["port"]
+
   anthill::python::virtualenv { $api_version: } -> python::pip { "api_version_${api_version}":
     pkgname => $anthill::common::packge_name,
     virtualenv => $venv,
     ensure => $pip_package_version,
     greater_or_eq => $greate_or_eq,
-    extra_index => $anthill::index::url,
-    install_args => "--no-cache-dir",
-    require => Class['anthill::index']
+    search_index =>  "http://${simple_index_host}:${simple_index_port}/simple",
+    install_args => "--no-cache-dir"
   }
 }

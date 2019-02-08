@@ -1,0 +1,7 @@
+/modules/*
+!/modules/anthill
+!/modules/anthill_*
+/.idea
+/.tmp
+/Puppetfile
+/Puppetfile.lock
