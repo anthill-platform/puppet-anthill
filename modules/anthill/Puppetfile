@@ -50,6 +50,6 @@ mod 'puppet-puppetdbquery',
     :git => 'https://github.com/dalen/puppet-puppetdbquery.git'
 mod 'puppet-python',
     :git => 'https://github.com/anthill-utils/puppet-python.git',
-    :commit => "c155bfed158ee85373280d807a39f2ab7ef2d721"
+    :commit => "a70d80e28e72ddb70de7be6cbefff7aa7fb22e01"
 mod 'desertkun-hieraresources',
     :git => 'https://github.com/desertkun/hieraresources.git'
