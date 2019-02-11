@@ -7,6 +7,7 @@ define anthill::service (
   Enum[present, absent] $ensure                   = present,
 
   Optional[String] $repository_remote_url         = undef,
+  Optional[String] $python_package_name           = undef,
   Optional[String] $private_ssh_key               = undef,
 
   String $domain                                  = "${service_name}-${environment}",
@@ -29,7 +30,8 @@ define anthill::service (
   if ($ensure == 'present') {
     if ($repository_remote_url)
     {
-      anthill::index::repo { $repository_remote_url:
+      anthill::index::repo { $python_package_name:
+        git_repository_url => $repository_remote_url,
         private_ssh_key => $private_ssh_key
       }
     }

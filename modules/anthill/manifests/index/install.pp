@@ -8,15 +8,18 @@ class anthill::index::install inherits anthill::index {
   }
 
   $pypi_args = "--port=${listen_port} --cache-directory=${cache_directory} --public-url=http://${anthill::internal_fqdn}:${listen_port} --repos=${repos_location}"
-  $venv = "${anthill::virtualenv_location}/pypigit"
+  $venv = "${anthill::virtualenv_location}/default"
 
   $applications_user = $anthill::applications_user
   $applications_group = $anthill::applications_group
 
-  anthill::python::virtualenv { "pypigit":
-  } -> python::pip { "pypigit":
+  python::pip { "pypigit":
     virtualenv => $venv,
-    ensure => $ensure
+    ensure => $ensure ? {
+      'present' => '0.2.8',
+      'absent' => absent
+    },
+    require => Anthill::Python::Virtualenv["default"]
   } -> file { $cache_directory:
     ensure => 'directory',
     owner  => $application_user,

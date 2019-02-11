@@ -62,6 +62,7 @@ class anthill_game_master (
   anthill::service { $service_name:
     package_directory => $package_directory,
     default_version => $default_version,
+    python_package_name => $package_name,
     repository_remote_url => $repository_remote_url,
     private_ssh_key => $private_ssh_key,
     service_name => $service_name,

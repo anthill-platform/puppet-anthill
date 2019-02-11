@@ -16,10 +16,11 @@ class anthill::index::repos inherits anthill::index {
   }
 
   if defined( Class['anthill::keys']) and $anthill::keys::ssh_private_key {
-    $fixed_ssh_key = regsubst($anthill::keys::ssh_private_key, "\n", "\n      ", 'G')
+    $private_ssh_key_source = file($anthill::keys::ssh_private_key)
+    $fixed_ssh_key = regsubst($private_ssh_key_source, "\n", "\n  ", 'G')
     concat::fragment { "anthill_index_default_ssh_key":
       target => $repos_location,
-      content => "default_ssh_key: |\n ${fixed_ssh_key}",
+      content => "default_ssh_key: |\n  ${fixed_ssh_key}\n",
       order => "7_default_ssh_key",
     }
   }

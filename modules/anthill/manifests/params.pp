@@ -20,6 +20,7 @@ class anthill::params {
   $pyenv_location_dir = "pyenv"
 
   $python_version = "3.6.6"
+  $python2_version = "2.7.13"
   $python_index_location = "pyindex-${hostname}"
 
   $services_enable_monitoring = false

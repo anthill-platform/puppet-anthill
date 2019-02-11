@@ -5,9 +5,9 @@
 #
 class anthill::keys (
   # file contents for a public key
-  $authentication_public_key = 'puppet:///modules/keys/anthill.pub',
+  $authentication_public_key = 'keys/anthill.pub',
   # file contents and a passphrase for a private key
-  $authentication_private_key = 'puppet:///modules/keys/anthill.pem',
+  $authentication_private_key = 'keys/anthill.pem',
   $authentication_private_key_passphrase,
 
   # a private key for downloading repositories via SSH
@@ -51,7 +51,7 @@ class anthill::keys (
       owner   => $applications_user,
       group   => $applications_group,
       mode    => '0400',
-      source  => $authentication_public_key,
+      source  => "puppet:///modules/${authentication_public_key}",
       require => File["${application_keys_location}/${environment}"]
     }
   }
@@ -67,7 +67,7 @@ class anthill::keys (
       owner   => $applications_user,
       group   => $applications_group,
       mode    => '0400',
-      source  => $ssh_private_key
+      source  => "puppet:///modules/${ssh_private_key}"
     }
   }
 
@@ -81,7 +81,7 @@ class anthill::keys (
       owner => $applications_user,
       group => $applications_group,
       mode   => '0400',
-      source => $authentication_private_key,
+      source => "puppet:///modules/${authentication_private_key}",
       require => File["${application_keys_location}/${environment}"]
     }
   }
@@ -99,7 +99,7 @@ class anthill::keys (
       owner   => $applications_user,
       group   => $applications_group,
       mode    => '0400',
-      source => $https_keys_bundle_contents,
+      source => "puppet:///modules/${https_keys_bundle_contents}",
       require => File[$https_keys_location]
     }
 
@@ -108,7 +108,7 @@ class anthill::keys (
       owner   => $applications_user,
       group   => $applications_group,
       mode    => '0400',
-      source => $https_keys_private_key_contents,
+      source => "puppet:///modules/${https_keys_private_key_contents}",
       require => File[$https_keys_location]
     }
   }

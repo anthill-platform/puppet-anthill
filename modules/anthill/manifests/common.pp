@@ -9,7 +9,8 @@ class anthill::common (
   Optional[String] $private_ssh_key                   = undef
 ) inherits anthill::common::params {
 
-  anthill::index::repo { $repository_remote_url:
+  anthill::index::repo { $packge_name:
+    git_repository_url => $repository_remote_url,
     private_ssh_key => $private_ssh_key
   }
 

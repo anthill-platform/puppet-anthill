@@ -33,6 +33,8 @@ class anthill (
   String $pyenv_location                                              = "${applications_location}/${environment}/${anthill::params::pyenv_location_dir}",
   # Python version for all services
   String $python_version                                              = $anthill::params::python_version,
+  # Some packages still require python 2
+  String $python2_version                                             = $anthill::params::python2_version,
   # A username/group in behalf whom the Services will run
   String $applications_user                                           = $anthill::params::applications_user,
   String $applications_group                                          = $anthill::params::applications_group,
@@ -64,6 +66,7 @@ class anthill (
   class { '::anthill::node': } ->
   class { '::anthill::git': } ->
   class { '::anthill::python': } ->
+  class { '::anthill::def': } ->
   anchor { 'anthill::end': }
 
 }
