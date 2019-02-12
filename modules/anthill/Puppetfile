@@ -18,8 +18,7 @@ mod 'herculesteam-augeasproviders_sysctl',
 mod 'arioch-redis',
     :git => 'https://github.com/anthill-utils/puppet-redis.git'
 mod 'desertkun-supervisor',
-    :git => 'https://github.com/anthill-utils/puppet-supervisor.git',
-    :hash => 'fec3e7c7d961e1ad84001fefd4570999011f396c'
+    :git => 'https://github.com/anthill-utils/puppet-supervisor.git'
 mod 'puppet-nginx',
     :git => 'https://github.com/anthill-utils/puppet-nginx.git'
 mod 'puppet-archive',
