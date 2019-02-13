@@ -6,7 +6,7 @@ class anthill::redis::install inherits anthill::redis {
     port => $listen_port,
     databases => $databases_count,
     bind => anthill::local_ip_address(),
-    package_ensure => 'latest',
+    package_ensure => 'present',
     manage_repo => true
   }
 }

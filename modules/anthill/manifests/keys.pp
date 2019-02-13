@@ -8,7 +8,7 @@ class anthill::keys (
   $authentication_public_key = 'keys/anthill.pub',
   # file contents and a passphrase for a private key
   $authentication_private_key = 'keys/anthill.pem',
-  $authentication_private_key_passphrase,
+  $authentication_private_key_passphrase = undef,
 
   # a private key for downloading repositories via SSH
   $ssh_private_key = undef,
@@ -72,10 +72,6 @@ class anthill::keys (
   }
 
   if ($authentication_private_key) {
-    if ! defined(Class['anthill_login']) {
-      fail("There is no reason to deploy private authentication keys to a node without login service. Please either install login service or remote the authentication_private_key parameter")
-    }
-
     file { "${application_keys_location}/${environment}/${application_keys_private_name}":
       ensure => 'present',
       owner => $applications_user,
