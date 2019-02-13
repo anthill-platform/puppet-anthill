@@ -58,7 +58,7 @@ class anthill::python inherits anthill {
     ]
   } -> # install virtualenv for ${python2_version}
   exec { "python_${python2_version}_virtualenv":
-    command     => "pip install --upgrade pip setuptools virtualenv",
+    command     => "pip install --upgrade pip virtualenv",
     user        => $applications_user,
     group       => $applications_group,
     creates     => "${pyenv_location}/versions/${python2_version}/bin/virtualenv",

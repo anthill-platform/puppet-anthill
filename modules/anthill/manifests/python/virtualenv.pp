@@ -22,6 +22,10 @@ define anthill::python::virtualenv (
     creates => "${path}/packages",
     cwd => $path,
     path => [ '/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ]
+  } -> python::pip { "setuptools_${title}":
+    pkgname => "setuptools",
+    virtualenv => $path,
+    ensure => 'latest'
   }
 
   $python_index_location = anthill::ensure_location("python simple index location", $anthill::python_index_location, true)
