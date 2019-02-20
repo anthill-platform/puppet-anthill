@@ -1,0 +1,15 @@
+{
+  "name": "anthillplatform-anthill_blog",
+  "version": "0.2.0",
+  "author": "desertkun",
+  "summary": "A service to deliver news and patch notes feed to the users inside the game",
+  "license": "MIT",
+  "source": "https://github.com/anthill-platform/anthill-blog",
+  "project_page": "https://anthillplatform.org",
+  "issues_url": "https://github.com/anthill-platform/anthill-blog/issues",
+  "dependencies": [
+    {"name":"anthillplatform-anthill","version_requirement":">= 0.2.0"}
+  ],
+  "data_provider": null
+}
+
