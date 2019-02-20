@@ -6,6 +6,7 @@
 class anthill::python inherits anthill {
 
   $virtualenv_path = [ "${pyenv_location}/versions/${python_version}/bin", '/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ]
+  $virtualenv2_path = [ "${pyenv_location}/versions/${python2_version}/bin", '/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ]
   $pyenv_path = [ "${pyenv_location}/bin", '/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ]
   $pypi_index = ""
 
@@ -30,6 +31,7 @@ class anthill::python inherits anthill {
     creates     => "${pyenv_location}/versions/${python_version}",
     path        => $pyenv_path,
     cwd         => '/tmp',
+    timeout     =>  0,
     environment => [
       "PYENV_ROOT=${pyenv_location}"
     ]
@@ -40,7 +42,29 @@ class anthill::python inherits anthill {
     group       => $applications_group,
     creates     => "${pyenv_location}/versions/${python_version}/bin/virtualenv",
     path        => $virtualenv_path,
-    cwd         => '/tmp'
+    cwd         => '/tmp',
+    timeout     =>  0,
+  } -> # install the python of ${python2_version}
+  exec { "python_${python2_version}_install":
+    command     => "pyenv install ${python2_version}",
+    user        => $applications_user,
+    group       => $applications_group,
+    creates     => "${pyenv_location}/versions/${python2_version}",
+    path        => $pyenv_path,
+    cwd         => '/tmp',
+    timeout     =>  0,
+    environment => [
+      "PYENV_ROOT=${pyenv_location}"
+    ]
+  } -> # install virtualenv for ${python2_version}
+  exec { "python_${python2_version}_virtualenv":
+    command     => "pip install --upgrade pip virtualenv",
+    user        => $applications_user,
+    group       => $applications_group,
+    creates     => "${pyenv_location}/versions/${python2_version}/bin/virtualenv",
+    path        => $virtualenv_path,
+    cwd         => '/tmp',
+    timeout     =>  0,
   }
 
   if ($::operatingsystem == 'Debian' and $::operatingsystemmajrelease == '9') {

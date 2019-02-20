@@ -23,12 +23,16 @@ define anthill::python::package (
     fail("Anthill API version ${api_version} is not defined")
   }
 
+  $python_index_location = anthill::ensure_location("python simple index location", $anthill::python_index_location, true)
+  $simple_index_host = $python_index_location["host"]
+  $simple_index_port = $python_index_location["port"]
+
   python::pip { $title:
     pkgname => $package_name,
     virtualenv => $venv,
-    extra_index => $anthill::index::url,
+    search_index =>  "http://${simple_index_host}:${simple_index_port}/simple",
     ensure => $pip_package_version,
     greater_or_eq => $greate_or_eq,
-    install_args => "--process-dependency-links --no-cache-dir"
+    install_args => "--no-cache-dir"
   }
 }

@@ -10,8 +10,6 @@ class anthill::puppetdb {
     listen_address => $::fqdn
   }
 
-  ensure_packages('apt-transport-https')
-
   Package['apt-transport-https'] -> Class[puppetdb]
 
   # Configure the Puppet master to use puppetdb

@@ -31,9 +31,10 @@ class anthill (
   String $keys_location                                               = "${applications_location}/${environment}/${anthill::params::keys_location_dir}",
   String $virtualenv_location                                         = "${applications_location}/${environment}/${anthill::params::virtualenv_location_dir}",
   String $pyenv_location                                              = "${applications_location}/${environment}/${anthill::params::pyenv_location_dir}",
-  String $index_location                                              = "${applications_location}/${environment}/${anthill::params::index_location_dir}",
   # Python version for all services
   String $python_version                                              = $anthill::params::python_version,
+  # Some packages still require python 2
+  String $python2_version                                             = $anthill::params::python2_version,
   # A username/group in behalf whom the Services will run
   String $applications_user                                           = $anthill::params::applications_user,
   String $applications_group                                          = $anthill::params::applications_group,
@@ -47,6 +48,8 @@ class anthill (
   Boolean $services_enable_monitoring                                 = $anthill::params::services_enable_monitoring,
   # Default location of the InfluxDB to push the stats into
   String $services_monitoring_location                                = $anthill::params::services_monitoring_location,
+  # Python Simple Repository (PEP 503) location
+  String $python_index_location                                       = $anthill::params::python_index_location,
 
 ) inherits anthill::params {
 

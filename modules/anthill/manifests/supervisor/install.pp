@@ -1,6 +1,8 @@
 
 class anthill::supervisor::install inherits anthill::supervisor {
 
+  $venv = "${anthill::virtualenv_location}/python2"
+
   class { '::supervisor':
 
     inet_http_server => $http_admin_management,
@@ -8,8 +10,16 @@ class anthill::supervisor::install inherits anthill::supervisor {
     inet_http_server_username => $http_admin_management ? { true => $http_admin_username, false => undef },
     inet_http_server_password => $http_admin_management ? { true => $http_admin_password, false => undef },
 
+    manage_package => false,
+    supervisor_bin_path => "${venv}/bin",
     supervisord_minfds => $minfds
   }
+
+  python::pip { "supervisor":
+    virtualenv => $venv,
+    ensure => $ensure,
+    require => Anthill::Python::Virtualenv["python2"]
+  } -> File["/lib/systemd/system/${supervisor::supervisor_service_name}"]
 
   if ($http_admin_management) {
 

@@ -1,7 +1,7 @@
 
 class anthill::mysql::apt inherits anthill::mysql {
 
-  require ::apt
+  include ::apt
 
   apt::source { 'mysql-5.7':
     location => 'http://repo.mysql.com/apt/debian/',

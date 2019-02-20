@@ -18,9 +18,10 @@ class anthill::params {
   $keys_location_dir = "keys"
   $virtualenv_location_dir = "venv"
   $pyenv_location_dir = "pyenv"
-  $index_location_dir = "index"
 
   $python_version = "3.6.6"
+  $python2_version = "2.7.13"
+  $python_index_location = "pyindex-${hostname}"
 
   $services_enable_monitoring = false
   $services_monitoring_location = "influxdb-${hostname}"

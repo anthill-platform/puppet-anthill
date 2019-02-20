@@ -5,10 +5,10 @@
 #
 class anthill::keys (
   # file contents for a public key
-  $authentication_public_key = 'puppet:///modules/keys/anthill.pub',
+  $authentication_public_key = 'keys/anthill.pub',
   # file contents and a passphrase for a private key
-  $authentication_private_key = 'puppet:///modules/keys/anthill.pem',
-  $authentication_private_key_passphrase,
+  $authentication_private_key = 'keys/anthill.pem',
+  $authentication_private_key_passphrase = undef,
 
   # a private key for downloading repositories via SSH
   $ssh_private_key = undef,
@@ -51,7 +51,7 @@ class anthill::keys (
       owner   => $applications_user,
       group   => $applications_group,
       mode    => '0400',
-      source  => $authentication_public_key,
+      source  => "puppet:///modules/${authentication_public_key}",
       require => File["${application_keys_location}/${environment}"]
     }
   }
@@ -67,21 +67,17 @@ class anthill::keys (
       owner   => $applications_user,
       group   => $applications_group,
       mode    => '0400',
-      source  => $ssh_private_key
+      source  => "puppet:///modules/${ssh_private_key}"
     }
   }
 
   if ($authentication_private_key) {
-    if ! defined(Class['anthill_login']) {
-      fail("There is no reason to deploy private authentication keys to a node without login service. Please either install login service or remote the authentication_private_key parameter")
-    }
-
     file { "${application_keys_location}/${environment}/${application_keys_private_name}":
       ensure => 'present',
       owner => $applications_user,
       group => $applications_group,
       mode   => '0400',
-      source => $authentication_private_key,
+      source => "puppet:///modules/${authentication_private_key}",
       require => File["${application_keys_location}/${environment}"]
     }
   }
@@ -99,7 +95,7 @@ class anthill::keys (
       owner   => $applications_user,
       group   => $applications_group,
       mode    => '0400',
-      source => $https_keys_bundle_contents,
+      source => "puppet:///modules/${https_keys_bundle_contents}",
       require => File[$https_keys_location]
     }
 
@@ -108,7 +104,7 @@ class anthill::keys (
       owner   => $applications_user,
       group   => $applications_group,
       mode    => '0400',
-      source => $https_keys_private_key_contents,
+      source => "puppet:///modules/${https_keys_private_key_contents}",
       require => File[$https_keys_location]
     }
   }
