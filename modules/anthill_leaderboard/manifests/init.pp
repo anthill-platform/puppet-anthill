@@ -9,9 +9,6 @@ class anthill_leaderboard (
   String $package_name                          = $anthill_leaderboard::params::package_name,
   String $package_directory                     = $anthill_leaderboard::params::package_directory,
 
-  String $repository_remote_url                 = $anthill_leaderboard::params::repository_remote_url,
-  Optional[String] $private_ssh_key             = undef,
-
   String $db_location                           = $anthill_leaderboard::params::db_location,
   Optional[Boolean] $manage_db                  = true,
   String $db_name                               = $anthill_leaderboard::params::db_name,
@@ -47,8 +44,6 @@ class anthill_leaderboard (
     package_directory => $package_directory,
     default_version => $default_version,
     python_package_name => $package_name,
-    repository_remote_url => $repository_remote_url,
-    private_ssh_key => $private_ssh_key,
     service_name => $service_name,
     ensure => $ensure,
     domain => $domain,

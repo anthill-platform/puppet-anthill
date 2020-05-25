@@ -8,7 +8,6 @@ class anthill::python inherits anthill {
   $virtualenv_path = [ "${pyenv_location}/versions/${python_version}/bin", '/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ]
   $virtualenv2_path = [ "${pyenv_location}/versions/${python2_version}/bin", '/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ]
   $pyenv_path = [ "${pyenv_location}/bin", '/bin', '/usr/bin', '/usr/sbin', '/usr/local/bin' ]
-  $pypi_index = ""
 
   file { $virtualenv_location:
     ensure => 'directory',

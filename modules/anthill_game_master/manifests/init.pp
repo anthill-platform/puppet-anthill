@@ -9,9 +9,6 @@ class anthill_game_master (
   String $package_name                          = $anthill_game_master::params::package_name,
   String $package_directory                     = $anthill_game_master::params::package_directory,
 
-  String $repository_remote_url                 = $anthill_game_master::params::repository_remote_url,
-  Optional[String] $private_ssh_key             = undef,
-
   String $deployments_directory                 = $anthill_game_master::params::deployments_directory,
 
   String $db_location                           = $anthill_game_master::params::db_location,
@@ -63,8 +60,6 @@ class anthill_game_master (
     package_directory => $package_directory,
     default_version => $default_version,
     python_package_name => $package_name,
-    repository_remote_url => $repository_remote_url,
-    private_ssh_key => $private_ssh_key,
     service_name => $service_name,
     ensure => $ensure,
     domain => $domain,

@@ -6,8 +6,6 @@ class anthill_game_master::params {
   $package_name = "anthill-game-master"
   $package_directory = "anthill/game/master"
 
-  $repository_remote_url = "https://github.com/anthill-platform/anthill-game-master.git"
-
   $deployments_directory = "${anthill::runtime_location}/${service_name}-deployments"
 
   $db_location = "mysql-${hostname}"

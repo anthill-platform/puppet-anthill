@@ -6,8 +6,6 @@ class anthill_store::params {
   $package_name = "anthill-${service_name}"
   $package_directory = "anthill/${service_name}"
 
-  $repository_remote_url = "https://github.com/anthill-platform/anthill-store.git"
-
   $db_location = "mysql-${hostname}"
   $db_name = "${environment}_${service_name}"
 

@@ -10,6 +10,7 @@ class anthill::supervisor::install inherits anthill::supervisor {
     inet_http_server_username => $http_admin_management ? { true => $http_admin_username, false => undef },
     inet_http_server_password => $http_admin_management ? { true => $http_admin_password, false => undef },
 
+    unix_http_server => false,
     manage_package => false,
     supervisor_bin_path => "${venv}/bin",
     supervisord_minfds => $minfds

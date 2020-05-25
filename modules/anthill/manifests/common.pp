@@ -5,13 +5,7 @@
 #
 class anthill::common (
   String $repository_remote_url                       = $anthill::common::params::repository_remote_url,
-  String $packge_name                                 = $anthill::common::params::package_name,
-  Optional[String] $private_ssh_key                   = undef
+  String $packge_name                                 = $anthill::common::params::package_name
 ) inherits anthill::common::params {
-
-  anthill::index::repo { $packge_name:
-    git_repository_url => $repository_remote_url,
-    private_ssh_key => $private_ssh_key
-  }
 
 }

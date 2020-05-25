@@ -27,16 +27,6 @@ define anthill::service (
 ) {
   $vhost = "${environment}_${service_name}"
 
-  if ($ensure == 'present') {
-    if ($repository_remote_url)
-    {
-      anthill::index::repo { $python_package_name:
-        git_repository_url => $repository_remote_url,
-        private_ssh_key => $private_ssh_key
-      }
-    }
-  }
-
   include anthill::nginx
 
   if ($domain != "")

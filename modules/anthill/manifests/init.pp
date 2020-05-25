@@ -48,8 +48,6 @@ class anthill (
   Boolean $services_enable_monitoring                                 = $anthill::params::services_enable_monitoring,
   # Default location of the InfluxDB to push the stats into
   String $services_monitoring_location                                = $anthill::params::services_monitoring_location,
-  # Python Simple Repository (PEP 503) location
-  String $python_index_location                                       = $anthill::params::python_index_location,
 
 ) inherits anthill::params {
 

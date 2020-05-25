@@ -6,8 +6,6 @@ class anthill_discovery::params {
   $package_name = "anthill-${service_name}"
   $package_directory = "anthill/${service_name}"
 
-  $repository_remote_url = "https://github.com/anthill-platform/anthill-discovery.git"
-
   $services_init_file = "${anthill::runtime_location}/discovery-services.json"
 
   $discover_services_location = "redis-${hostname}"

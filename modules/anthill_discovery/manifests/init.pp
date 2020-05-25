@@ -9,9 +9,7 @@ class anthill_discovery (
   String $package_name                          = $anthill_discovery::params::package_name,
   String $package_directory                     = $anthill_discovery::params::package_directory,
 
-  String $repository_remote_url                 = $anthill_discovery::params::repository_remote_url,
-  Optional[String] $private_ssh_key             = undef,
-    String $services_init_file                    = $anthill_discovery::params::services_init_file,
+  String $services_init_file                    = $anthill_discovery::params::services_init_file,
 
   String $disocever_services_location           = $anthill_discovery::params::discover_services_location,
   Integer $discover_services_db                 = $anthill_discovery::params::discover_services_db,
@@ -69,8 +67,6 @@ class anthill_discovery (
     package_directory => $package_directory,
     default_version => $default_version,
     python_package_name => $package_name,
-    repository_remote_url => $repository_remote_url,
-    private_ssh_key => $private_ssh_key,
     service_name => $service_name,
     ensure => $ensure,
     domain => $domain,

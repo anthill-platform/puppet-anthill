@@ -28,10 +28,6 @@ define anthill::python::virtualenv (
     ensure => 'latest'
   }
 
-  $python_index_location = anthill::ensure_location("python simple index location", $anthill::python_index_location, true)
-  $simple_index_host = $python_index_location["host"]
-  $simple_index_port = $python_index_location["port"]
-
   file { "${path}/pip.conf":
     ensure => $custom_pip_conf ? {
       true => present,
